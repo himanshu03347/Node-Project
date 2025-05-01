@@ -19,6 +19,7 @@ Lets take a look inside the `src` folder
 - `utils` -> contains helper methods, error classes etc.
 
 - Inside the `src/config` folder create a file named as `config.json` and erite the following code:
+```
 {
   "development": {
     "username": "root",
@@ -42,6 +43,10 @@ Lets take a look inside the `src` folder
     "dialect": "mysql"
   }
 }
+```
+- or alternatively you can go inside your src folder and run the command: ``` npx sequelize init ```
+
+- By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder.
 
 - If you are setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using. For Example: mysql, mariadb, etc
 
