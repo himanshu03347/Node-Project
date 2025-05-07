@@ -60,9 +60,14 @@ class CrudRepository {
                     id: id
                 }
             });
+            if (response === 0) {
+                throw new AppError('Not able to find the resource', StatusCodes.NOT_FOUND)
+            }
+            Logger.info(`Successfully updated ${response} row(s)`);
             return response;
         }catch(error){
-            Logger.error('Something went wrong in the Crud Repo: update');
+            // Logger.error('Something went wrong in the Crud Repo: update');
+            Logger.error(`Crud Repo: update - ${error.message}`);
             throw error;
         }
     }
