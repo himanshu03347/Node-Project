@@ -26,7 +26,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date()
     }
-  ])
+  ]);
   },
 
   async down (queryInterface, Sequelize) {
@@ -36,6 +36,13 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Airplanes', {[Op.or]: [{modelNumber: 'boing777'}, {modelNumber: 'airbus380'}]})
+    await queryInterface.bulkDelete(
+      'Airplanes', 
+      {
+        [Op.or]: [
+          {modelNumber: 'boing777'}, 
+          {modelNumber: 'airbus380'}
+        ]
+      });
   }
 };
