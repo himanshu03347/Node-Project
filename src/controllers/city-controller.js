@@ -34,9 +34,7 @@ async function createCity(req, res) {
  */
 async function destroyCity(req, res) {
     try {
-        // console.log(req.params.id)
         const city = await CityService.destroyCity(req.params.id);
-        console.log(city)
         SuccessResponse.data = city;
         return res
                 .status(StatusCodes.OK)
@@ -50,7 +48,29 @@ async function destroyCity(req, res) {
     }
 }
 
+async function updateCity(req, res) {
+    try {
+        const city = await CityService.updateCity(req.params.id, req.body);
+        SuccessResponse.data = city;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.message = 'Object Not found in DB';
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+        
+    }
+}
+
+/**
+ * UPDATE : /cities/:id 
+ * req-body { "name": 'Mumbai'} 
+ */
 module.exports = {
     createCity,
-    destroyCity
+    destroyCity,
+    updateCity
 }

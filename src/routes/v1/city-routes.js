@@ -4,10 +4,13 @@ const { CityMiddlewares } = require('../../middlewares');
 
 const router = express.Router();
 
-// /api/v1/cities
+// /api/v1/cities   POST
 router.post('/', CityMiddlewares.validateCreateRequest,CityController.createCity);
 
-// /api/v1/cities/:id
+// /api/v1/cities/:id   DELETE
 router.delete('/:id', CityController.destroyCity);
+
+// /api/v1/cities/:id   PUT
+router.put('/:id', CityController.updateCity);
 
 module.exports = router;
