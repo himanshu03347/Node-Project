@@ -29,6 +29,20 @@ async function createCity(data) {
     }
 }
 
+async function destroyCity(id) {
+    try {
+        const response = await cityRepository.destroy(id);
+        return response;
+    } catch (error) {
+        if(error.statusCode == StatusCodes.NOT_FOUND){
+            throw new AppError('The airplane you request to delete does not exist', error.statusCode);
+        }
+        throw new AppError('Cannot delete data of the airplane', StatusCodes.INTERNAL_SERVER_ERROR);  
+    }
+}
+
+
 module.exports = {
-    createCity
+    createCity,
+    destroyCity
 }

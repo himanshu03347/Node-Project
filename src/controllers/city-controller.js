@@ -27,6 +27,30 @@ async function createCity(req, res) {
     }
 }
 
+
+/**
+ * DELETE : /cities/:id 
+ * req-body { } 
+ */
+async function destroyCity(req, res) {
+    try {
+        // console.log(req.params.id)
+        const city = await CityService.destroyCity(req.params.id);
+        console.log(city)
+        SuccessResponse.data = city;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.message = 'City Not Found!';
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
 module.exports = {
-    createCity
+    createCity,
+    destroyCity
 }
