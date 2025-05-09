@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'airplaneId'
       });
       this.belongsTo(models.Airport, {
-        foreignKey: 'code'
+        foreignKey: 'id'
       });
       this.belongsTo(models.Airport, {
-        foreignKey: 'code'
+        foreignKey: 'id'
       });
     }
   }
@@ -32,12 +32,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    depatureAirportId: {
-      type: DataTypes.STRING,
+    departureAirportId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     arrivalAirportId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     arrivalTime: {

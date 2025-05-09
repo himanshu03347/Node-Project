@@ -23,22 +23,22 @@ module.exports = {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
-      depatureAirportId: {
-        type: Sequelize.STRING,
+      departureAirportId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Airports',
-          key: 'code'
+          key: 'id'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
       },
       arrivalAirportId: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'Airports',
-          key: 'code'
+          key: 'id'
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
