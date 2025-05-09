@@ -27,6 +27,47 @@ async function createCity(req, res) {
     }
 }
 
+/**
+ * GET : /cities/ 
+ * req-body { } 
+ */
+async function getCities(req, res) {
+    try {
+        const cities = await CityService.getCities();
+        SuccessResponse.data = cities;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.message = 'Cities Not Found!';
+        ErrorResponse.error = error;
+        return res 
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
+
+/**
+ * GET : /cities/:id 
+ * req-body { } 
+ */
+async function getCity(req, res) {
+    try {
+        const city = await CityService.getCity(req.params.id);
+        SuccessResponse.data = city;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.message = 'Cities Not Found!';
+        ErrorResponse.error = error;
+        return res 
+                .status(error.statusCode)
+                .json(ErrorResponse)
+    }
+}
+
 
 /**
  * DELETE : /cities/:id 
@@ -48,6 +89,10 @@ async function destroyCity(req, res) {
     }
 }
 
+/**
+ * UPDATE : /cities/:id 
+ * req-body { "name": 'Mumbai'} 
+ */
 async function updateCity(req, res) {
     try {
         const city = await CityService.updateCity(req.params.id, req.body);
@@ -65,11 +110,10 @@ async function updateCity(req, res) {
     }
 }
 
-/**
- * UPDATE : /cities/:id 
- * req-body { "name": 'Mumbai'} 
- */
+
 module.exports = {
+    getCities,
+    getCity,
     createCity,
     destroyCity,
     updateCity
