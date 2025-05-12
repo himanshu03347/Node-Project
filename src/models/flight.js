@@ -15,11 +15,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'airplaneId'
       });
       this.belongsTo(models.Airport, {
-        foreignKey: 'code'
-      });
+        foreignKey: 'departureAirportId',
+        as: 'departureAirport'
+  });
       this.belongsTo(models.Airport, {
-        foreignKey: 'code'
-      });
+        foreignKey: 'arrivalAirportId',
+        as: 'arrivalAirport'
+  });
     }
   }
   Flight.init({
@@ -55,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
     boardingGate: {
       type: DataTypes.STRING
     },
-    TotalSeats: {
+    TotalSeats: { // total remaining seat
       type: DataTypes.INTEGER,
       allowNull: false
     }

@@ -42,13 +42,30 @@ async function createFlight(req, res){
     }catch(error){
         ErrorResponse.message = 'Something went wrong while creating flight';
         ErrorResponse.error = error;
-        console.log(error);
         return res
                 .status(error.statusCode)
                 .json(ErrorResponse);
     }
 }
 
+async function getAllFlights(req, res) {
+    try {
+        const flights = await FlightService.getAllFlights(req.query);
+        SuccessResponse.data = flights;
+        return res
+                .status(StatusCodes.OK)
+                .json(SuccessResponse)
+    } catch (error) {
+        ErrorResponse.message = 'Something went wrong while getting Flights data';
+        ErrorResponse.error = error;
+        return res
+                .status(error.statusCode)
+                .json(ErrorResponse);
+        
+    }
+}
+
 module.exports = {
-    createFlight
+    createFlight,
+    getAllFlights
 }
